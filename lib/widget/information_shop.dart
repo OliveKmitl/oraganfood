@@ -19,7 +19,6 @@ class _InformationShopState extends State<InformationShop> {
   UserModel userModel;
   @override
   void initState() {
-    // todo: implement initState
     super.initState();
     readDataUser();
   }
@@ -45,8 +44,6 @@ class _InformationShopState extends State<InformationShop> {
   }
 
   void routeToAddInfo() {
-    
-    
     Widget widget = userModel.nameShop.isEmpty ? AddInfoShop() : EditInfoShop();
     MaterialPageRoute materialPageRoute = MaterialPageRoute(
       builder: (context) => widget,
@@ -66,8 +63,8 @@ class _InformationShopState extends State<InformationShop> {
       ],
     );
   }
-
-  Widget showContent() => Column(
+ //Widget showContent() => SingleChildScrollView(
+ Widget showContent() => Column(
         children: <Widget>[
           //   Text(
           //     userModel.nameShop,
@@ -104,10 +101,12 @@ class _InformationShopState extends State<InformationShop> {
           ),
           Row(
             children: <Widget>[
-              Text(userModel.address),
+              Container(width: 270.0,
+                child: Text(userModel.address),
+              ),
             ],
           ),
-         
+
           Row(
             children: <Widget>[
               MyStyle().showTitleH2('โทรศัพท์ :'),
@@ -124,9 +123,11 @@ class _InformationShopState extends State<InformationShop> {
       );
 
   Container showImage() {
-    return Container(width: 200.0,height: 200.0,
-          child: Image.network('${MyConstant().domain}${userModel.urlPicture}'),
-        );
+    return Container(
+      width: 200.0,
+      height: 200.0,
+      child: Image.network('${MyConstant().domain}${userModel.urlPicture}'),
+    );
   }
 
   Set<Marker> shopMarker() {
